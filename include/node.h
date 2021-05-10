@@ -20,6 +20,7 @@ public:
     NodeType leafParent;
     string type;
     string value;
+    int regCount = 0;
     map<string, string> attributes;
 
     Node *parent = nullptr;

@@ -40,19 +40,20 @@ bool SymbolTable::declaredLocally(SymbolTableRow name)
 
 void SymbolTable::processNode(Node *node)
 {
-    if (node->value == ":open")
+    if (node->value == "open")
     {
         this->openScope();
     }
-    if (node->value == ":close")
+    if (node->value == "close")
     {
         this->closeScope();
     }
-    else if (node->type == ":DECLLIST")
+    else if (node->type == "DECLLIST")
     {
         SymbolTableRow symbol;
         symbol.scope = this->scope;
         symbol.type = node->children[0]->value;
+
         symbol.id = node->children[1]->children[0]->children[0]->value;
         symbol.attributes = node->children[1]->children[0]->children[1]->attributes;
         this->enterSymbol(symbol);
@@ -67,4 +68,28 @@ void SymbolTable::processNode(Node *node)
 void SymbolTable::construct(Node *root)
 {
     this->processNode(root);
+}
+
+void SymbolTable::dataSeg()
+{
+    for (SymbolTableRow &row : this->rows)
+    {
+        row.address = this->memoryAddress;
+        if (row.type == "int")
+        {
+            this->memoryAddress += this->intSize;
+        }
+        else if (row.type == "float")
+        {
+            this->memoryAddress += this->floatSize;
+        }
+        if (row.type == "string")
+        {
+            this->memoryAddress += this->stringSize;
+        }
+        if (row.type == "bool")
+        {
+            this->memoryAddress += this->boolSize;
+        }
+    }
 }

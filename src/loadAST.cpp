@@ -5,6 +5,11 @@ vector<vector<string>> secondPartRows;
 
 vector<Node> nodes;
 
+vector<Node> getNodes()
+{
+    return nodes;
+}
+
 void readInput(string filePath)
 {
     string line;
@@ -29,7 +34,33 @@ void readInput(string filePath)
         istringstream ss(line);
         for (string s; ss >> s;)
         {
-            row.push_back(s);
+            if (s[1] == 'x')
+            {
+                // Conver to ascii
+                string hexCharacter;
+                hexCharacter += s[2];
+                hexCharacter += s[3];
+                char ascii = stoul(hexCharacter, nullptr, 16);
+                string asciiString;
+                asciiString += ascii;
+                row.push_back(asciiString);
+            }
+            else
+            {
+                if (s[0] == ':')
+                {
+                    string subS;
+                    for (int i = 1; i < s.size(); i++)
+                    {
+                        subS += s[i];
+                    }
+                    row.push_back(subS);
+                }
+                else
+                {
+                    row.push_back(s);
+                }
+            }
         }
         if (secondPart)
         {
@@ -56,6 +87,49 @@ Node *getNodePointer(string id)
     exit(1);
 }
 
+string processForAscii(string input)
+{
+    string output;
+    bool split = false;
+    for (int i = 0; i < input.size(); i++)
+    {
+        if (input[i] == 'x' && input.size() > 2)
+        {
+            // Conver to ascii
+            string hexCharacter;
+            hexCharacter += input[i + 1];
+            hexCharacter += input[i + 2];
+            char ascii = stoul(hexCharacter, nullptr, 16);
+            string asciiString;
+            asciiString += ascii;
+            output += asciiString;
+            split = true;
+            i+=2;
+        }
+        else
+        {
+            output += input[i];
+        }
+    }
+
+    if (split)
+    {
+        string type;
+        for (int i = 0; i < output.size(); i++)
+        {
+            if (output[i] == ' ')
+            {
+                for (int j = i+1; j < output.size(); j++)
+                {
+                    type += output[j];
+                }
+            }
+        }
+        return type;
+    }
+    return input;
+}
+
 Node *loadTree(string filePath)
 {
     readInput(filePath);
@@ -78,7 +152,7 @@ Node *loadTree(string filePath)
             int index = 3;
             if (newNode.leafParent == leaf)
             {
-                newNode.value = row[3];
+                newNode.value = processForAscii(row[3]);
                 index = 4;
             }
             for (int i = index; i < row.size(); i++)

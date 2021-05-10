@@ -1,0 +1,50 @@
+0 parent :MODULE
+0-0 parent :DECLLIST
+0-0-0 leaf :type :constx20int type:int line:1 const:T col:7
+0-0-1 parent :DECLID
+0-0-1-0 parent :x3d binary:assign line:1 col:13 op:binary
+0-0-1-0-0 leaf :id :a line:1 col:11
+0-0-1-0-1 leaf :intval :3 line:1 col:15
+0-1 parent :DECLLIST
+0-1-0 leaf :type :constx20float type:float line:2 const:T col:7
+0-1-1 parent :DECLID
+0-1-1-0 parent :x3d binary:assign line:2 col:15 op:binary
+0-1-1-0-0 leaf :id :b line:2 col:13
+0-1-1-0-1 leaf :floatval :1x2e1 line:2 col:17
+0-2 parent :DECLLIST
+0-2-0 leaf :type :string type:string line:3 const:F col:1
+0-2-1 parent :DECLID
+0-2-1-0 parent :x3d binary:assign line:3 col:12 op:binary
+0-2-1-0-0 leaf :id :msg line:3 col:8
+0-2-1-0-1 leaf :stringval :x5ffinix5f line:3 col:14
+0-3 parent :DECLLIST
+0-3-0 leaf :type :float type:float line:4 const:F col:1
+0-3-1 parent :DECLID
+0-3-1-0 parent :x3d binary:assign line:4 col:9 op:binary
+0-3-1-0-0 leaf :id :x78 line:4 col:7
+0-3-1-0-1 parent :x2d binary:minus line:4 col:15 op:binary
+0-3-1-0-1-0 parent :x2a binary:mult line:4 col:12 op:binary
+0-3-1-0-1-0-0 leaf :id :a line:4 col:11
+0-3-1-0-1-0-1 leaf :id :b line:4 col:13
+0-3-1-0-1-1 leaf :intval :2 line:4 col:17
+0-4 parent :EMIT
+0-4-0 leaf :id :msg line:5 col:6
+0-4-1 leaf :intval :1 line:5 col:11
+0-4-2 leaf :intval :4 line:5 col:14
+
+0-0-1-0 0-0-1-0-0 0-0-1-0-1
+0-0-1 0-0-1-0
+0-0 0-0-0 0-0-1
+0-1-1-0 0-1-1-0-0 0-1-1-0-1
+0-1-1 0-1-1-0
+0-1 0-1-0 0-1-1
+0-2-1-0 0-2-1-0-0 0-2-1-0-1
+0-2-1 0-2-1-0
+0-2 0-2-0 0-2-1
+0-3-1-0-1-0 0-3-1-0-1-0-0 0-3-1-0-1-0-1
+0-3-1-0-1 0-3-1-0-1-0 0-3-1-0-1-1
+0-3-1-0 0-3-1-0-0 0-3-1-0-1
+0-3-1 0-3-1-0
+0-3 0-3-0 0-3-1
+0-4 0-4-0 0-4-1 0-4-2
+0 0-0 0-1 0-2 0-3 0-4
