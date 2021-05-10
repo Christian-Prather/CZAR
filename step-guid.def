@@ -1,0 +1,36 @@
+0 parent :MODULE
+0-0 parent :DECLLIST
+0-0-0 leaf :type :string type:string line:1 const:F col:1
+0-0-1 parent :DECLID
+0-0-1-0 parent :x3d binary:assign line:1 col:13 op:binary
+0-0-1-0-0 leaf :id :word line:1 col:8
+0-0-1-0-1 leaf :stringval :hellox20world line:1 col:15
+0-1 parent :FUNCTION
+0-1-0 parent :FUNSIG
+0-1-0-0 leaf :type :int type:int line:2 const:F col:1
+0-1-0-1 leaf :id :speak line:2 col:5
+0-1-0-2 parent :PARAMLIST
+0-1-1 parent :x3d line:3 col:11
+0-1-1-0 leaf :id :r line:3 col:9
+0-1-1-1 leaf :intval :0 line:3 col:13
+0-1-2 parent :BRACESTMTS
+0-1-2-0 leaf :scope :open line:4 col:1
+0-1-2-1 parent :STMTS
+0-1-2-1-0 parent :STATEMENT
+0-1-2-1-0-0 parent :EMIT
+0-1-2-1-0-0-0 leaf :id :word line:5 col:10
+0-1-2-1-0-0-1 leaf :intval :0 line:5 col:16
+0-1-2-1-0-0-2 leaf :intval :11 line:5 col:19
+0-1-2-2 leaf :scope :close line:6 col:1
+
+0-0-1-0 0-0-1-0-0 0-0-1-0-1
+0-0-1 0-0-1-0
+0-0 0-0-0 0-0-1
+0-1-0 0-1-0-0 0-1-0-1 0-1-0-2
+0-1-1 0-1-1-0 0-1-1-1
+0-1-2-1-0-0 0-1-2-1-0-0-0 0-1-2-1-0-0-1 0-1-2-1-0-0-2
+0-1-2-1-0 0-1-2-1-0-0
+0-1-2-1 0-1-2-1-0
+0-1-2 0-1-2-0 0-1-2-1 0-1-2-2
+0-1 0-1-0 0-1-1 0-1-2
+0 0-0 0-1
