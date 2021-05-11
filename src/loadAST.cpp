@@ -5,9 +5,9 @@ vector<vector<string>> secondPartRows;
 
 vector<Node> nodes;
 
-vector<Node> getNodes()
+vector<Node>* getNodes()
 {
-    return nodes;
+    return &nodes;
 }
 
 void readInput(string filePath)

@@ -93,3 +93,15 @@ void SymbolTable::dataSeg()
         }
     }
 }
+
+SymbolTableRow* SymbolTable::getSymbol(string name)
+{
+    for (int i = 0; i < this->rows.size(); i++)
+    {
+        if (rows[i].id == name)
+        {
+            return &rows[i];
+        }
+    }
+    return nullptr;
+}

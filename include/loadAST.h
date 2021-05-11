@@ -8,6 +8,6 @@
 
 void readInput(string filePath);
 Node *loadTree(string filePath);
-vector<Node> getNodes();
+vector<Node>* getNodes();
 
 #endif

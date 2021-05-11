@@ -22,13 +22,14 @@ int main(int argc, char **argv)
     cout << "Generated Symbol Table..." << endl;
     symbolTable.dataSeg();
     cout << "Data Seg ran... " << endl;
-    auto nodes = getNodes();
+    vector<Node> *nodes = getNodes();
 
-    for (auto &node : nodes)
+    for (int i = 0; i < nodes->size(); i++)
     {
-        if (node.type == "=" || node.type == "EMIT")
+
+        if (nodes->at(i).type == "=" || nodes->at(i).type == "EMIT")
         {
-            int dummy = registerNeeds(&node);
+            int dummy = registerNeeds(&nodes->at(i), symbolTable);
         }
     }
     cout << "Register Needs calculated..." << endl;

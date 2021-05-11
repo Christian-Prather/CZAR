@@ -41,6 +41,7 @@ public:
 
     void construct(Node *root);
     void dataSeg();
+    SymbolTableRow* getSymbol(string name);
 
 };
 

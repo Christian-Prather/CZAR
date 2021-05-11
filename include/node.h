@@ -21,6 +21,7 @@ public:
     string type;
     string value;
     int regCount = 0;
+    string dom;
     map<string, string> attributes;
 
     Node *parent = nullptr;
