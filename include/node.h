@@ -22,6 +22,10 @@ public:
     string value;
     int regCount = 0;
     string dom;
+
+    string asmCode;
+    int registerNumber;
+    vector<string> imageCommands;
     map<string, string> attributes;
 
     Node *parent = nullptr;

@@ -89,11 +89,14 @@ int registerNeeds(Node *T, SymbolTable symbolTable)
                     replacementChild = 1;
                     keepChild = 0;
                 }
+                newNode->type = "float";
+
                 newNode->children.push_back(T->children[replacementChild]);
                 newNode->parent = T;
                 T->children[replacementChild]->parent = newNode;
 
                 newNode->dom = T->children[keepChild]->dom;
+
                 newNode->regCount = T->children[replacementChild]->regCount;
                 T->children[replacementChild] = newNode;
             }

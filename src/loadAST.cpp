@@ -5,7 +5,7 @@ vector<vector<string>> secondPartRows;
 
 vector<Node> nodes;
 
-vector<Node>* getNodes()
+vector<Node> *getNodes()
 {
     return &nodes;
 }
@@ -103,8 +103,11 @@ string processForAscii(string input)
             string asciiString;
             asciiString += ascii;
             output += asciiString;
-            split = true;
-            i+=2;
+            if (ascii == ' ')
+            {
+                split = true;
+            }
+            i += 2;
         }
         else
         {
@@ -119,7 +122,7 @@ string processForAscii(string input)
         {
             if (output[i] == ' ')
             {
-                for (int j = i+1; j < output.size(); j++)
+                for (int j = i + 1; j < output.size(); j++)
                 {
                     type += output[j];
                 }
@@ -127,7 +130,7 @@ string processForAscii(string input)
         }
         return type;
     }
-    return input;
+    return output;
 }
 
 Node *loadTree(string filePath)

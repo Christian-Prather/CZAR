@@ -2,8 +2,11 @@
 #include "../include/loadAST.h"
 #include "../include/symbolTable.h"
 #include "../include/registerNeeds.h"
+#include "../include/treeCG.h"
 
 using namespace std;
+
+vector<int> regList = {2, 3, 4, 5, 6};
 
 int main(int argc, char **argv)
 {
@@ -33,4 +36,15 @@ int main(int argc, char **argv)
         }
     }
     cout << "Register Needs calculated..." << endl;
+
+    for (int i = 0; i < nodes->size(); i++)
+    {
+
+        if (nodes->at(i).type == "=" || nodes->at(i).type == "EMIT")
+        {
+            treeCG(&nodes->at(i), regList, symbolTable);
+        }
+    }
+
+    cout << "TreeCG processed ..." << endl;
 }
