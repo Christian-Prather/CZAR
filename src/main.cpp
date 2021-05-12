@@ -85,9 +85,17 @@ int main(int argc, char **argv)
     {
         if (row.type == "string")
         {
-            writter.outputFile << "data " << row.address<< " " << row.attributes["value"] << endl;
+            writter.outputFile << "data " << row.address << " " << row.attributes["rawValue"] << endl;
+            writter.outputFile << "label " << row.address << " " << row.id << endl;
         }
-        writter.outputFile << "label " << row.address << " " << row.id << endl;
+        else if (row.id != row.attributes["rawValue"])
+        {
+            writter.outputFile << "label " << row.address << " " << row.attributes["rawValue"] << endl;
+        }
+        else
+        {
+            writter.outputFile << "label " << row.address << " " << row.id << endl;
+        }
     }
     writter.outputFile << "init 0020" << endl;
 

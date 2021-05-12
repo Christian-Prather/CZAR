@@ -23,6 +23,8 @@ public:
     int regCount = 0;
     string dom;
     bool conversionNode = false;
+    string rawType;
+    string rawValue;
 
     string asmCode;
     int registerNumber;

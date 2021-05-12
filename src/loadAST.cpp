@@ -34,33 +34,33 @@ void readInput(string filePath)
         istringstream ss(line);
         for (string s; ss >> s;)
         {
-            if (s[1] == 'x')
+            // if (s[1] == 'x')
+            // {
+            //     // Conver to ascii
+            //     string hexCharacter;
+            //     hexCharacter += s[2];
+            //     hexCharacter += s[3];
+            //     char ascii = stoul(hexCharacter, nullptr, 16);
+            //     string asciiString;
+            //     asciiString += ascii;
+            //     row.push_back(asciiString);
+            // }
+            // else
+            // {
+            if (s[0] == ':')
             {
-                // Conver to ascii
-                string hexCharacter;
-                hexCharacter += s[2];
-                hexCharacter += s[3];
-                char ascii = stoul(hexCharacter, nullptr, 16);
-                string asciiString;
-                asciiString += ascii;
-                row.push_back(asciiString);
+                string subS;
+                for (int i = 1; i < s.size(); i++)
+                {
+                    subS += s[i];
+                }
+                row.push_back(subS);
             }
             else
             {
-                if (s[0] == ':')
-                {
-                    string subS;
-                    for (int i = 1; i < s.size(); i++)
-                    {
-                        subS += s[i];
-                    }
-                    row.push_back(subS);
-                }
-                else
-                {
-                    row.push_back(s);
-                }
+                row.push_back(s);
             }
+            // }
         }
         if (secondPart)
         {
@@ -148,7 +148,8 @@ Node *loadTree(string filePath)
         {
             newNode.leafParent = leaf;
         }
-        newNode.type = row[2];
+        newNode.type = processForAscii(row[2]);
+        newNode.rawType = row[2];
 
         if (row.size() > 3)
         {
@@ -156,7 +157,11 @@ Node *loadTree(string filePath)
             if (newNode.leafParent == leaf)
             {
                 newNode.value = processForAscii(row[3]);
+                newNode.rawValue = row[3];
                 index = 4;
+
+                newNode.attributes["rawValue"] = newNode.rawValue;
+                // newNode.attributes["rawId"] = newNode.rawType;
             }
             for (int i = index; i < row.size(); i++)
             {

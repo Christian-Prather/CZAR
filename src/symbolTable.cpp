@@ -55,7 +55,14 @@ void SymbolTable::processNode(Node *node)
         symbol.type = node->children[0]->value;
 
         symbol.id = node->children[1]->children[0]->children[0]->value;
-        symbol.attributes = node->children[1]->children[0]->children[1]->attributes;
+        if (node->children[0]->value == "string")
+        {
+            symbol.attributes = node->children[1]->children[0]->children[1]->attributes;
+        }
+        else
+        {
+            symbol.attributes = node->children[1]->children[0]->children[0]->attributes;
+        }
         this->enterSymbol(symbol);
     }
 
@@ -94,7 +101,7 @@ void SymbolTable::dataSeg()
     }
 }
 
-SymbolTableRow* SymbolTable::getSymbol(string name)
+SymbolTableRow *SymbolTable::getSymbol(string name)
 {
     for (int i = 0; i < this->rows.size(); i++)
     {
