@@ -1,4 +1,4 @@
-#CZAR
+# CZAR
 
 ## Build instructions
 To build CZAR you can do it in two ways, the first is by calling `./Build.sh` from the root of the directory 
