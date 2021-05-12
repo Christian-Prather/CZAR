@@ -6,35 +6,43 @@
 #include <map>
 
 using namespace std;
-
+/**
+ * @brief The node type can be a leaf of parent node
+ * 
+ */
 enum NodeType
 {
     parent,
     leaf
 };
 
+/**
+ * @brief The class definition for node objects, this is clunky but gets the job done
+ * 
+ */
 class Node
 {
 public:
-    string uniqueID;
-    NodeType leafParent;
-    string type;
-    string value;
-    int regCount = 0;
-    string dom;
-    bool conversionNode = false;
-    string rawType;
-    string rawValue;
+    string uniqueID;             // Node id from .def
+    NodeType leafParent;         // type of node
+    string type;                 // type
+    string value;                // if leaf value
+    int regCount = 0;            // Current register used
+    string dom;                  // Domain of node
+    bool conversionNode = false; // is this a conversion node
 
-    string asmCode;
-    int registerNumber;
-    vector<string> imageCommands;
-    map<string, string> attributes;
+    string rawType;  // Hex type
+    string rawValue; // Hex value
 
-    bool processed = false;
+    string asmCode;                 // Assembly instruction
+    int registerNumber;             // Register for instruction
+    vector<string> imageCommands;   // List of command for image
+    map<string, string> attributes; // Nodes attribute types
 
-    Node *parent = nullptr;
-    vector<Node *> children;
+    bool processed = false; // Has the node been processed by image yet
+
+    Node *parent = nullptr;  // Pointer to parent node
+    vector<Node *> children; // Vector of pointers to children nodes
 
     Node(/* args */);
     ~Node();

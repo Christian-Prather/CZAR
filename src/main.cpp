@@ -8,9 +8,14 @@
 
 using namespace std;
 
-vector<int> regList = {2, 3, 4, 5, 6};
+// Global list of nodes in tree
 vector<Node *> treeNodes;
 
+/**
+ * @brief Construct the list of tree nodes
+ * 
+ * @param node 
+ */
 void nodeTree(Node *node)
 {
     for (auto &child : node->children)
@@ -22,24 +27,39 @@ void nodeTree(Node *node)
 
 int main(int argc, char **argv)
 {
-    // if (argc < 2)
-    // {
-    //     cout << "Na missing an input";
-    //     exit(1);
-    // }
-    string inputAST = "../sans-functions-synthvars.def";
-    // inputAST = argv[1];
+    if (argc < 3)
+    {
+        // cout << "Na missing an input";
+        exit(1);
+    }
+    // string inputAST = "../sans-functions-synthvars.def";
 
+    // Handle argument input
+    int nr = stoi(argv[1]);
+    string inputAST = argv[2];
+    string outputFilePath = argv[3];
+    vector<int> regList;
+    for (int i = 2; i < nr; i++)
+    {
+        regList.push_back(i);
+    }
+
+    // Generate the tree
     Node *root = loadTree(inputAST);
-    cout << "Generated AST ..." << endl;
+    // cout << "Generated AST ..." << endl;
+    // Construct the symbol table
     SymbolTable symbolTable;
     symbolTable.construct(root);
-    cout << "Generated Symbol Table..." << endl;
+    // cout << "Generated Symbol Table..." << endl;
+    // Map symbols to memory address 
     symbolTable.dataSeg();
-    cout << "Data Seg ran... " << endl;
+    // cout << "Data Seg ran... " << endl;
+
+    // Get the nodes in the tree
     vector<Node> *nodes = getNodes();
     nodeTree(root);
 
+    // For every expression tree calculate register needs
     for (auto &node : treeNodes)
     {
 
@@ -49,16 +69,9 @@ int main(int argc, char **argv)
         }
     }
 
-    // for (int i = 0; i < nodes->size(); i++)
-    // {
+    // cout << "Register Needs calculated..." << endl;
 
-    //     if (nodes->at(i).type == "=" || nodes->at(i).type == "EMIT")
-    //     {
-    //         int dummy = registerNeeds(&nodes->at(i), symbolTable);
-    //     }
-    // }
-    cout << "Register Needs calculated..." << endl;
-
+    // For every expression tree produce the actuall ASM call
     for (auto &node : treeNodes)
     {
         if (node->type == "=" || node->type == "EMIT")
@@ -67,17 +80,9 @@ int main(int argc, char **argv)
         }
     }
 
-    // for (int i = 0; i < nodes->size(); i++)
-    // {
+    // cout << "TreeCG processed ..." << endl;
 
-    //     if (nodes->at(i).type == "=" || nodes->at(i).type == "EMIT")
-    //     {
-    //         treeCG(&nodes->at(i), regList, symbolTable);
-    //     }
-    // }
-
-    cout << "TreeCG processed ..." << endl;
-    string outputFilePath = "please_work.txt";
+    // Iterate through the AST and create the output file
     ImageWritter writter;
     writter.outputFile.open(outputFilePath);
 
@@ -107,16 +112,8 @@ int main(int argc, char **argv)
         }
     }
 
-    // for (int i = 0; i < nodes->size(); i++)
-    // {
-
-    //     if (nodes->at(i).type == "=" || nodes->at(i).type == "EMIT")
-    //     {
-    //         image(&writter, &nodes->at(i));
-    //     }
-    // }
     writter.outputFile << "return" << endl;
     writter.outputFile.close();
 
-    cout << "Image file generated..." << endl;
+    // cout << "Image file generated..." << endl;
 }

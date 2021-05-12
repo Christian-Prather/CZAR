@@ -1,0 +1,22 @@
+label 0 a
+label 4 b
+data 8 x5ffinix5f
+label 8 msg
+label 16 x78
+init 0020
+LD R2 #3
+ST R2 0
+LD R2 #1.1
+ST R2 4
+LD R2 0
+float F2 R2
+LD R3 4
+* F2 F2 F3
+LD R3 #2
+float F3 R3
+- F2 F2 F3
+ST R2 16
+LD R2 #1
+LD R3 #4
+emit 8 R2 R3
+return

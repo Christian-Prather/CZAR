@@ -25,7 +25,7 @@ void readInput(string filePath)
     {
         if (line.empty())
         {
-            cout << "First part loaded... " << endl;
+            // cout << "First part loaded... " << endl;
             secondPart = true;
             continue;
         }
@@ -34,19 +34,7 @@ void readInput(string filePath)
         istringstream ss(line);
         for (string s; ss >> s;)
         {
-            // if (s[1] == 'x')
-            // {
-            //     // Conver to ascii
-            //     string hexCharacter;
-            //     hexCharacter += s[2];
-            //     hexCharacter += s[3];
-            //     char ascii = stoul(hexCharacter, nullptr, 16);
-            //     string asciiString;
-            //     asciiString += ascii;
-            //     row.push_back(asciiString);
-            // }
-            // else
-            // {
+
             if (s[0] == ':')
             {
                 string subS;
@@ -60,7 +48,6 @@ void readInput(string filePath)
             {
                 row.push_back(s);
             }
-            // }
         }
         if (secondPart)
         {
@@ -83,7 +70,7 @@ Node *getNodePointer(string id)
             return &nodes[i];
         }
     }
-    cout << "No node with that id found" << endl;
+    // cout << "No node with that id found" << endl;
     exit(1);
 }
 
@@ -161,7 +148,6 @@ Node *loadTree(string filePath)
                 index = 4;
 
                 newNode.attributes["rawValue"] = newNode.rawValue;
-                // newNode.attributes["rawId"] = newNode.rawType;
             }
             for (int i = index; i < row.size(); i++)
             {
@@ -186,9 +172,7 @@ Node *loadTree(string filePath)
                     }
                     stringValue += character;
                 }
-                // value = stoi(stringValue);
                 newNode.attributes[key] = stringValue;
-                // newNode.attributes["value"] = newNode.value;
             }
         }
         nodes.push_back(newNode);

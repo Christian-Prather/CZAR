@@ -7,6 +7,10 @@
 
 using namespace std;
 
+/**
+ * @brief This is just a container for a file writter since I use it in a recursive function
+ * 
+ */
 class ImageWritter
 {
 public:
