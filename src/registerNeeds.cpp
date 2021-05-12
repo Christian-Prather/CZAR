@@ -90,6 +90,7 @@ int registerNeeds(Node *T, SymbolTable symbolTable)
                     keepChild = 0;
                 }
                 newNode->type = "float";
+                newNode->conversionNode = true;
 
                 newNode->children.push_back(T->children[replacementChild]);
                 newNode->parent = T;

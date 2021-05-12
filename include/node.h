@@ -22,11 +22,14 @@ public:
     string value;
     int regCount = 0;
     string dom;
+    bool conversionNode = false;
 
     string asmCode;
     int registerNumber;
     vector<string> imageCommands;
     map<string, string> attributes;
+
+    bool processed = false;
 
     Node *parent = nullptr;
     vector<Node *> children;

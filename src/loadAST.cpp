@@ -183,6 +183,7 @@ Node *loadTree(string filePath)
                 }
                 // value = stoi(stringValue);
                 newNode.attributes[key] = stringValue;
+                // newNode.attributes["value"] = newNode.value;
             }
         }
         nodes.push_back(newNode);
